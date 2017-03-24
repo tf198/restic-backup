@@ -9,6 +9,7 @@
   "bin": {
     "restic-backup": "scripts/restic-backup.js"
   },
+  "repository": "https://github.com/tf198/restic-backup.git",
   "author": "Tris Forster",
   "license": "MIT",
   "dependencies": {

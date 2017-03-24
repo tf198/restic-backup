@@ -15,7 +15,14 @@ function runBackup(config, cb) {
 
 
     if(config.logs) {
-        var logName = new Date().toISOString().substring(0, 19) + ".log";
+        var now = new Date();
+        var logName = util.format("%d%d%d_%d%d%d.log",
+                now.getFullYear(),
+                now.getMonth(),
+                now.getDate(),
+                now.getHours(),
+                now.getMinutes(),
+                now.getSeconds());
         var logFile = path.join(config.logs, logName);
         debug("Using logfile: %s", logFile);
 
