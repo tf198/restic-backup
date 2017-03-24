@@ -6,6 +6,12 @@ const spawn = require('child_process').spawn;
 const debug = require('debug')('restic-backup');
 const util = require('util');
 
+function prefix(lines, s) {
+    if(!s) s = ">";
+    var replacement = "\n" + s + "$1";
+    return s + lines.replace(/\n(\w)/g, replacement);
+}
+
 function runBackup(config, cb) {
     // set up logging
     var logger = debug;
@@ -63,8 +69,8 @@ function runBackup(config, cb) {
 
         var p = spawn(config.restic, args, cmdOpts);
 
-        p.stdout.on('data', (data) => logStream.write("> " + data.toString()));
-        p.stderr.on('data', (data) => logStream.write("! " + data.toString()));
+        p.stdout.on('data', (data) => logStream.write(prefix(data.toString(), "> ")));
+        p.stderr.on('data', (data) => logStream.write(prefix(data.toString(), "! ")));
 
         p.on('close', (code) => {
             if(code != 0) return next(new Error(`Error backing up ${target.source} [${code}]`));
