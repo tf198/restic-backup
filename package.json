@@ -1,0 +1,19 @@
+{
+  "name": "restic-backup",
+  "version": "0.1.0",
+  "description": "Restic backup script with email",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "restic-backup": "scripts/restic-backup.js"
+  },
+  "author": "Tris Forster",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^2.1.5",
+    "debug": "^2.6.3",
+    "nodemailer": "^3.1.8"
+  }
+}
